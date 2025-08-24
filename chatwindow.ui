@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChatWindow</class>
+ <widget class="QMainWindow" name="ChatWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>网络聊天程序</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #f5f5f5;
+}
+
+QWidget#centralWidget {
+    background-color: #ffffff;
+}
+
+QWidget#chatContainer {
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+QScrollArea {
+    border: none;
+    background-color: #ffffff;
+}
+
+QScrollArea QWidget {
+    background-color: #ffffff;
+}
+
+QWidget#messageItem {
+    background-color: transparent;
+    margin: 5px 0;
+}
+
+QLabel#messageText {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+QLabel#myMessageText {
+    background-color: #667eea;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+QLabel#timestampLabel {
+    color: #999999;
+    font-size: 11px;
+    margin: 2px 8px;
+}
+
+QLineEdit#messageInput {
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+    background-color: white;
+    margin: 10px;
+}
+
+QLineEdit#messageInput:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+QPushButton#sendButton {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+QPushButton#sendButton:hover {
+    background-color: #5a67d8;
+}
+
+QPushButton#sendButton:pressed {
+    background-color: #4c51bf;
+}
+
+QPushButton#emojiButton {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 8px;
+    margin: 10px 5px;
+    font-size: 16px;
+}
+
+QPushButton#emojiButton:hover {
+    background-color: #f5f5f5;
+}
+
+QGroupBox {
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 5px;
+    padding-top: 15px;
+    background-color: white;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px 0 5px;
+    color: #333;
+}
+
+QComboBox {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+QComboBox:focus {
+    border-color: #667eea;
+}
+
+QLineEdit#hostInput {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+}
+
+QLineEdit#hostInput:focus {
+    border-color: #667eea;
+}
+
+QPushButton#actionButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+QPushButton#actionButton:hover {
+    background-color: #45a049;
+}
+
+QLabel#connectionLabel {
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+QStatusBar {
+    background-color: #f8f9fa;
+    color: #666;
+    border-top: 1px solid #e0e0e0;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QGroupBox" name="connectionGroupBox">
+      <property name="title">
+       <string>连接设置</string>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="connectionLayout">
+       <item>
+        <widget class="QLabel" name="modeLabel">
+         <property name="text">
+          <string>模式:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="modeCombo">
+         <item>
+          <property name="text">
+           <string>服务器模式</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>客户端模式</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="hostLabel">
+         <property name="text">
+          <string>主机:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="hostInput">
+         <property name="placeholderText">
+          <string>输入服务器IP地址</string>
+         </property>
+         <property name="text">
+          <string>127.0.0.1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="actionButton">
+         <property name="text">
+          <string>启动服务器</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="connectionLabel">
+         <property name="text">
+          <string>未连接</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: red;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="chatContainer">
+      <layout class="QVBoxLayout" name="chatLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>878</width>
+            <height>69</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="messagesLayout">
+           <property name="spacing">
+            <number>5</number>
+           </property>
+           <property name="leftMargin">
+            <number>20</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>20</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <spacer name="messagesSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="inputContainer">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#inputContainer {
+    background-color: #fafafa;
+    border-top: 1px solid #e0e0e0;
+}</string>
+         </property>
+         <layout class="QHBoxLayout" name="inputLayout">
+          <property name="leftMargin">
+           <number>20</number>
+          </property>
+          <property name="topMargin">
+           <number>15</number>
+          </property>
+          <property name="rightMargin">
+           <number>20</number>
+          </property>
+          <property name="bottomMargin">
+           <number>15</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="emojiButton">
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>😀</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="messageInput">
+            <property name="placeholderText">
+             <string>输入消息...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="sendButton">
+            <property name="text">
+             <string>发送</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>900</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
